@@ -4,12 +4,13 @@
  */
 package com.interfaz;
 
+import com.DataBase.Conexion;
 import com.backend.*;
 
 public class Login extends javax.swing.JFrame {
     Botones btn = new Botones();
     CamposTexto txt = new CamposTexto();
-
+    Conexion cn = new Conexion();
     public Login() {
         initComponents();
     }
@@ -313,6 +314,7 @@ public class Login extends javax.swing.JFrame {
 
     private void textoBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguienteMouseClicked
         // TODO add your handling code here:
+        cn.getConexion();
         txt.textoUsuarioUIContraseña(jtxtUsuario, jtxtUsuarioUIContraseña);
         jtpLoginContenedor.setSelectedIndex(1);
     }//GEN-LAST:event_textoBtnSiguienteMouseClicked
