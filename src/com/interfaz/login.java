@@ -52,7 +52,7 @@ public class Login extends javax.swing.JFrame {
         jpwContraseña = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        textoErrorContrasenia = new javax.swing.JLabel();
+        jlbErrorContrasenia = new javax.swing.JLabel();
         jlblUsuarioBloqueado = new javax.swing.JLabel();
         btnVolver = new javax.swing.JPanel();
         txtVolver = new javax.swing.JLabel();
@@ -267,10 +267,10 @@ public class Login extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         panelContraseña.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 380, 20));
 
-        textoErrorContrasenia.setBackground(new java.awt.Color(255, 0, 0));
-        textoErrorContrasenia.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        textoErrorContrasenia.setForeground(new java.awt.Color(255, 0, 0));
-        panelContraseña.add(textoErrorContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 270, 60));
+        jlbErrorContrasenia.setBackground(new java.awt.Color(255, 0, 0));
+        jlbErrorContrasenia.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlbErrorContrasenia.setForeground(new java.awt.Color(255, 0, 0));
+        panelContraseña.add(jlbErrorContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 270, 60));
 
         jlblUsuarioBloqueado.setBackground(new java.awt.Color(255, 0, 0));
         jlblUsuarioBloqueado.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
@@ -378,7 +378,7 @@ public class Login extends javax.swing.JFrame {
 
     private void textoBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguienteMouseClicked
         // TODO add your handling code here:
-        this.ac.siguiente(jtxtUsuario, jtpLoginContenedor, jtxtUsuarioUIContraseña, jlblTextoErrorUsuario);
+        this.ac.siguiente(jtxtUsuario, jtpLoginContenedor, jtxtUsuarioUIContraseña, jlblTextoErrorUsuario,jlbErrorContrasenia,jlblUsuarioBloqueado);
     }//GEN-LAST:event_textoBtnSiguienteMouseClicked
 
     private void jpwContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpwContraseñaActionPerformed
@@ -402,7 +402,7 @@ public class Login extends javax.swing.JFrame {
 
     private void botonSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseClicked
         // TODO add your handling code here:
-        this.ac.siguiente(jtxtUsuario, jtpLoginContenedor, jtxtUsuarioUIContraseña, jlblTextoErrorUsuario);
+        this.ac.siguiente(jtxtUsuario, jtpLoginContenedor, jtxtUsuarioUIContraseña, jlblTextoErrorUsuario,jlbErrorContrasenia,jlblUsuarioBloqueado);
     }//GEN-LAST:event_botonSiguienteMouseClicked
 
     private void txtVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseExited
@@ -425,7 +425,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtVolverMouseMoved
 
 private void cambiarDeInterfaz() {
-    boolean con = this.ac.iniciar(jpwContraseña, jtxtUsuario, textoErrorContrasenia, jlblUsuarioBloqueado);
+    boolean con = this.ac.iniciar(jpwContraseña, jtxtUsuario, jlbErrorContrasenia, jlblUsuarioBloqueado);
     if (con) {
         this.setVisible(false);
         this.fin.setVisible(true);
@@ -484,6 +484,7 @@ private void cambiarDeInterfaz() {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel jlbErrorContrasenia;
     private javax.swing.JLabel jlblTextoErrorUsuario;
     private javax.swing.JLabel jlblUsuarioBloqueado;
     private javax.swing.JPasswordField jpwContraseña;
@@ -495,7 +496,6 @@ private void cambiarDeInterfaz() {
     private javax.swing.JPanel panelFondoIcono;
     private javax.swing.JPanel panelUsuario;
     private javax.swing.JLabel textoBtnSiguiente;
-    private javax.swing.JLabel textoErrorContrasenia;
     private javax.swing.JLabel txtInicioSesion;
     private javax.swing.JLabel txtVolver;
     // End of variables declaration//GEN-END:variables

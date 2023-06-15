@@ -1,8 +1,6 @@
 package com.DataBase;
 
 import com.backend.*;
-import com.interfaz.EnConstruccion;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
@@ -13,14 +11,14 @@ public class Acciones {
     private final Sentencias ejecuciones = new Sentencias();
     private final CamposTexto txt = new CamposTexto();
 
-    public void siguiente(JTextField usuario, JTabbedPane pestañas, JTextField textoUsuarioContraseña, JLabel errorUsuario) {
+    public void siguiente(JTextField usuario, JTabbedPane pestañas, JTextField textoUsuarioContraseña, JLabel errorUsuario,JLabel errorContrUsuario,JLabel errorContrContr) {
         String estado = this.ejecuciones.comprobarUsuarioYBloqueo(usuario);
         if (estado.equals("vacio")) {
             errorUsuario.setText("Usuario no existente");
         } else if (estado.equals("NO")) {
             errorUsuario.setText("Usuario bloqueado");
         } else {
-            this.txt.textoUsuarioUIContraseña(usuario, textoUsuarioContraseña);
+            this.txt.textoUsuarioUIContraseña(usuario, textoUsuarioContraseña,errorContrUsuario,errorContrContr);
             pestañas.setSelectedIndex(1);
         }
     }

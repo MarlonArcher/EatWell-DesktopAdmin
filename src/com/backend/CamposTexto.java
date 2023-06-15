@@ -1,5 +1,6 @@
 package com.backend;
 
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -10,7 +11,9 @@ public class CamposTexto {
         }
     }
     
-    public void textoUsuarioUIContraseña(JTextField textoUsuario,JTextField textoUsuarioContraseña){
+    public void textoUsuarioUIContraseña(JTextField textoUsuario,JTextField textoUsuarioContraseña,JLabel errorUsuario, JLabel errorContrasenia){
+        errorUsuario.setText("");
+        errorContrasenia.setText("");
         textoUsuarioContraseña.setText(textoUsuario.getText());
         textoUsuarioContraseña.setEditable(false);
     }
