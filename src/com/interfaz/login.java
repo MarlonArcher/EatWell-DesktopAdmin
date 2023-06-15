@@ -4,13 +4,17 @@
  */
 package com.interfaz;
 
-import com.DataBase.Conexion;
+import com.DataBase.Acciones;
 import com.backend.*;
+import java.awt.BorderLayout;
 
 public class Login extends javax.swing.JFrame {
-    Botones btn = new Botones();
-    CamposTexto txt = new CamposTexto();
-    Conexion cn = new Conexion();
+
+    private final Botones btn = new Botones();
+    private final CamposTexto txt = new CamposTexto();
+    private final Acciones ac = new Acciones();
+    EnConstruccion fin = new EnConstruccion();
+
     public Login() {
         initComponents();
     }
@@ -31,22 +35,27 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jtpLoginContenedor = new javax.swing.JTabbedPane();
         panelUsuario = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jlblTextoErrorUsuario = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jtxtUsuario = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         botonSiguiente = new javax.swing.JPanel();
         textoBtnSiguiente = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         panelContraseña = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jtxtUsuarioUIContraseña = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        botonSiguiente1 = new javax.swing.JPanel();
-        textoBtnSiguiente1 = new javax.swing.JLabel();
+        botonInicioSesion = new javax.swing.JPanel();
+        txtInicioSesion = new javax.swing.JLabel();
         jpwContraseña = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        textoErrorContrasenia = new javax.swing.JLabel();
+        jlblUsuarioBloqueado = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JPanel();
+        txtVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -81,10 +90,10 @@ public class Login extends javax.swing.JFrame {
         panelUsuario.setBackground(new java.awt.Color(142, 180, 98));
         panelUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(77, 71, 84));
-        jLabel3.setText("USUARIO");
-        panelUsuario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 350, 70));
+        jlblTextoErrorUsuario.setBackground(new java.awt.Color(255, 0, 0));
+        jlblTextoErrorUsuario.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblTextoErrorUsuario.setForeground(new java.awt.Color(255, 0, 0));
+        panelUsuario.add(jlblTextoErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 270, 20));
 
         jLabel5.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 50)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(77, 71, 84));
@@ -114,6 +123,9 @@ public class Login extends javax.swing.JFrame {
 
         botonSiguiente.setBackground(new java.awt.Color(72, 127, 120));
         botonSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSiguienteMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botonSiguienteMouseEntered(evt);
             }
@@ -148,6 +160,11 @@ public class Login extends javax.swing.JFrame {
         botonSiguiente.add(textoBtnSiguiente, java.awt.BorderLayout.CENTER);
 
         panelUsuario.add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 230, 50));
+
+        jLabel9.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(77, 71, 84));
+        jLabel9.setText("USUARIO");
+        panelUsuario.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 350, 70));
 
         jtpLoginContenedor.addTab("tab1", panelUsuario);
 
@@ -184,39 +201,45 @@ public class Login extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         panelContraseña.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 380, 20));
 
-        botonSiguiente1.setBackground(new java.awt.Color(72, 127, 120));
-        botonSiguiente1.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonInicioSesion.setBackground(new java.awt.Color(72, 127, 120));
+        botonInicioSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonInicioSesionMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonSiguiente1MouseEntered(evt);
+                botonInicioSesionMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonSiguiente1MouseExited(evt);
+                botonInicioSesionMouseExited(evt);
             }
         });
-        botonSiguiente1.setLayout(new java.awt.BorderLayout());
+        botonInicioSesion.setLayout(new java.awt.BorderLayout());
 
-        textoBtnSiguiente1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        textoBtnSiguiente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        textoBtnSiguiente1.setText("INICIO DE SESIÓN");
-        textoBtnSiguiente1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        textoBtnSiguiente1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        textoBtnSiguiente1.setVerifyInputWhenFocusTarget(false);
-        textoBtnSiguiente1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        txtInicioSesion.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        txtInicioSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtInicioSesion.setText("INICIO DE SESION");
+        txtInicioSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtInicioSesion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        txtInicioSesion.setVerifyInputWhenFocusTarget(false);
+        txtInicioSesion.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                textoBtnSiguiente1MouseMoved(evt);
+                txtInicioSesionMouseMoved(evt);
             }
         });
-        textoBtnSiguiente1.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtInicioSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtInicioSesionMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                textoBtnSiguiente1MouseEntered(evt);
+                txtInicioSesionMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                textoBtnSiguiente1MouseExited(evt);
+                txtInicioSesionMouseExited(evt);
             }
         });
-        botonSiguiente1.add(textoBtnSiguiente1, java.awt.BorderLayout.CENTER);
+        botonInicioSesion.add(txtInicioSesion, java.awt.BorderLayout.CENTER);
 
-        panelContraseña.add(botonSiguiente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 230, 50));
+        panelContraseña.add(botonInicioSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 230, 50));
 
         jpwContraseña.setBackground(new java.awt.Color(142, 181, 113));
         jpwContraseña.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
@@ -244,6 +267,45 @@ public class Login extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         panelContraseña.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 380, 20));
 
+        textoErrorContrasenia.setBackground(new java.awt.Color(255, 0, 0));
+        textoErrorContrasenia.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        textoErrorContrasenia.setForeground(new java.awt.Color(255, 0, 0));
+        panelContraseña.add(textoErrorContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 270, 60));
+
+        jlblUsuarioBloqueado.setBackground(new java.awt.Color(255, 0, 0));
+        jlblUsuarioBloqueado.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblUsuarioBloqueado.setForeground(new java.awt.Color(255, 0, 0));
+        panelContraseña.add(jlblUsuarioBloqueado, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 270, 60));
+
+        btnVolver.setBackground(new java.awt.Color(72, 127, 120));
+        btnVolver.setLayout(new java.awt.BorderLayout());
+
+        txtVolver.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        txtVolver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtVolver.setText("VOLVER");
+        txtVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtVolver.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        txtVolver.setVerifyInputWhenFocusTarget(false);
+        txtVolver.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                txtVolverMouseMoved(evt);
+            }
+        });
+        txtVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtVolverMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtVolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtVolverMouseExited(evt);
+            }
+        });
+        btnVolver.add(txtVolver, java.awt.BorderLayout.PAGE_END);
+
+        panelContraseña.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 100, 30));
+
         jtpLoginContenedor.addTab("tab1", panelContraseña);
 
         panelBorde.add(jtpLoginContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 10, 970, 570));
@@ -263,12 +325,12 @@ public class Login extends javax.swing.JFrame {
 
     private void textoBtnSiguienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguienteMouseExited
         // TODO add your handling code here:
-        btn.cambiarColorBotonLogin(botonSiguiente,1);
+        this.btn.cambiarColorBotonLogin(botonSiguiente, 1);
     }//GEN-LAST:event_textoBtnSiguienteMouseExited
 
     private void textoBtnSiguienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguienteMouseEntered
         // TODO add your handling code here:
-        btn.cambiarColorBotonLogin(botonSiguiente,0);
+        this.btn.cambiarColorBotonLogin(botonSiguiente, 0);
     }//GEN-LAST:event_textoBtnSiguienteMouseEntered
 
     private void textoBtnSiguienteMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguienteMouseMoved
@@ -281,7 +343,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jtxtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtxtUsuarioMousePressed
         // TODO add your handling code here:
-        txt.textoDefectoUsuario(jtxtUsuario);
+        this.txt.textoDefectoUsuario(jtxtUsuario);
     }//GEN-LAST:event_jtxtUsuarioMousePressed
 
     private void jtxtUsuarioUIContraseñaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtxtUsuarioUIContraseñaMousePressed
@@ -292,31 +354,31 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtUsuarioUIContraseñaActionPerformed
 
-    private void textoBtnSiguiente1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguiente1MouseMoved
+    private void txtInicioSesionMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInicioSesionMouseMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_textoBtnSiguiente1MouseMoved
+    }//GEN-LAST:event_txtInicioSesionMouseMoved
 
-    private void textoBtnSiguiente1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguiente1MouseEntered
+    private void txtInicioSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInicioSesionMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_textoBtnSiguiente1MouseEntered
+        this.btn.cambiarColorBotonLogin(botonInicioSesion, 0);
+    }//GEN-LAST:event_txtInicioSesionMouseEntered
 
-    private void textoBtnSiguiente1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguiente1MouseExited
+    private void txtInicioSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInicioSesionMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_textoBtnSiguiente1MouseExited
+        this.btn.cambiarColorBotonLogin(botonInicioSesion, 1);
+    }//GEN-LAST:event_txtInicioSesionMouseExited
 
-    private void botonSiguiente1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguiente1MouseEntered
+    private void botonInicioSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInicioSesionMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonSiguiente1MouseEntered
+    }//GEN-LAST:event_botonInicioSesionMouseEntered
 
-    private void botonSiguiente1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguiente1MouseExited
+    private void botonInicioSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInicioSesionMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonSiguiente1MouseExited
+    }//GEN-LAST:event_botonInicioSesionMouseExited
 
     private void textoBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguienteMouseClicked
         // TODO add your handling code here:
-        cn.getConexion();
-        txt.textoUsuarioUIContraseña(jtxtUsuario, jtxtUsuarioUIContraseña);
-        jtpLoginContenedor.setSelectedIndex(1);
+        this.ac.siguiente(jtxtUsuario, jtpLoginContenedor, jtxtUsuarioUIContraseña, jlblTextoErrorUsuario);
     }//GEN-LAST:event_textoBtnSiguienteMouseClicked
 
     private void jpwContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpwContraseñaActionPerformed
@@ -325,8 +387,51 @@ public class Login extends javax.swing.JFrame {
 
     private void jpwContraseñaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpwContraseñaMousePressed
         // TODO add your handling code here:
-        txt.textoContraseñaDefecto(jpwContraseña);
+        this.txt.textoContraseñaDefecto(jpwContraseña);
     }//GEN-LAST:event_jpwContraseñaMousePressed
+
+    private void botonInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInicioSesionMouseClicked
+        // TODO add your handling code here:
+        this.cambiarDeInterfaz();
+    }//GEN-LAST:event_botonInicioSesionMouseClicked
+
+    private void txtInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInicioSesionMouseClicked
+        // TODO add your handling code here:
+        this.cambiarDeInterfaz();
+    }//GEN-LAST:event_txtInicioSesionMouseClicked
+
+    private void botonSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseClicked
+        // TODO add your handling code here:
+        this.ac.siguiente(jtxtUsuario, jtpLoginContenedor, jtxtUsuarioUIContraseña, jlblTextoErrorUsuario);
+    }//GEN-LAST:event_botonSiguienteMouseClicked
+
+    private void txtVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonLogin(btnVolver, 1);
+    }//GEN-LAST:event_txtVolverMouseExited
+
+    private void txtVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonLogin(btnVolver, 0);
+    }//GEN-LAST:event_txtVolverMouseEntered
+
+    private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
+        // TODO add your handling code here:
+        this.ac.reiniciarLogin(jlblTextoErrorUsuario, jtxtUsuario, jtpLoginContenedor);
+    }//GEN-LAST:event_txtVolverMouseClicked
+
+    private void txtVolverMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVolverMouseMoved
+
+private void cambiarDeInterfaz() {
+    boolean con = this.ac.iniciar(jpwContraseña, jtxtUsuario, textoErrorContrasenia, jlblUsuarioBloqueado);
+    if (con) {
+        this.setVisible(false);
+        this.fin.setVisible(true);
+    }
+}
+
 
     /**
      * @param args the command line arguments
@@ -365,19 +470,22 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel botonInicioSesion;
     private javax.swing.JPanel botonSiguiente;
-    private javax.swing.JPanel botonSiguiente1;
+    private javax.swing.JPanel btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel jlblTextoErrorUsuario;
+    private javax.swing.JLabel jlblUsuarioBloqueado;
     private javax.swing.JPasswordField jpwContraseña;
     private javax.swing.JTabbedPane jtpLoginContenedor;
     private javax.swing.JTextField jtxtUsuario;
@@ -387,6 +495,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel panelFondoIcono;
     private javax.swing.JPanel panelUsuario;
     private javax.swing.JLabel textoBtnSiguiente;
-    private javax.swing.JLabel textoBtnSiguiente1;
+    private javax.swing.JLabel textoErrorContrasenia;
+    private javax.swing.JLabel txtInicioSesion;
+    private javax.swing.JLabel txtVolver;
     // End of variables declaration//GEN-END:variables
 }
